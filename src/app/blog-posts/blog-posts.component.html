@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div>
+        <span *ngFor="let user of userAndPosts" >
+           <a mat-flat-button [color]="(activeUser?.user?.id == user.user.id) ? 'accent' : 'primary'" (click)="selectUser(user)"> {{user?.user?.name | splitName}} </a>
+        </span>
+      </div>
+    </mat-toolbar-row> 
+</mat-toolbar>
+ 
+<div *ngFor="let post of activeUser?.posts; let i = index">
+    <mat-card class="post-card" *ngIf="i < maxPosts || displayAllPosts">
+        <mat-card-title>{{post.title}}</mat-card-title>
+        <mat-card-content>
+          <p>{{post.body}}</p>
+          <div *ngIf="post.comments"><b>Comments:</b></div>
+          <div *ngFor="let comment of post.comments">
+             <p>{{comment.name}} : {{comment.body}} </p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button *ngIf="!post.comments" mat-flat-button color="primary" (click)="viewComments(post)">VIEW COMMENTS</button>
+          <button *ngIf="post.comments" mat-flat-button color="primary" (click)="hideComments(post)">HIDE COMMENTS</button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>
+
+<div *ngIf="activeUser && !displayAllPosts">
+    <button class="post-loadall-button" mat-flat-button color="primary" (click)="loadAllPosts()">LOAD ALL POSTS</button>
+</div>
+
+
+
+
+
