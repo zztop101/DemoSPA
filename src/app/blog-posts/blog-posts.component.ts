@@ -19,7 +19,6 @@ export class BlogPostsComponent implements OnInit {
   maxPosts: number = 3;
   comments: PostComment[];
   displayComments: boolean = false;
-  commentsSpinner: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private blogService: BlogService) {
     this.userAndPosts = [];
@@ -39,8 +38,10 @@ export class BlogPostsComponent implements OnInit {
   }
 
   viewComments(post: Post) {
+    post.loading = true;
     this.blogService.getComments(post.id).subscribe((comments: PostComment[]) => {
       post.comments = comments
+      post.loading = false;
     });
   }
 

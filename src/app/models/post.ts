@@ -6,4 +6,5 @@ export class Post {
    title: string;
    body: string;
    comments: PostComment[] | undefined;
+   loading: boolean;
 }

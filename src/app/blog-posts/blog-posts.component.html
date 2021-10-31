@@ -19,7 +19,7 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button *ngIf="!post.comments" mat-flat-button color="primary" (click)="viewComments(post)">VIEW COMMENTS</button>
+          <button *ngIf="!post.comments" mat-flat-button color="primary" (click)="viewComments(post)" [class.spinner]="post.loading" [disabled]="post.loading">VIEW COMMENTS</button>
           <button *ngIf="post.comments" mat-flat-button color="primary" (click)="hideComments(post)">HIDE COMMENTS</button>
         </mat-card-actions>
     </mat-card>

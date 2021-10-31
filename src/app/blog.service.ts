@@ -15,6 +15,7 @@ export class BlogService {
   getUserAndPosts() {
 
     let URL = "http://localhost:8080/api/users-and-posts";
+    
     // add small delay to show progress spinner for demo 
     return this.httpClient.get<UserAndPosts[]>(URL).pipe(delay(1500));
 
@@ -23,7 +24,9 @@ export class BlogService {
   getComments(postId: number) {
 
     let URL = "http://localhost:8080/api/comments?postId=" + postId;
-    return this.httpClient.get<PostComment[]>(URL);
+
+    // add small delay to show progress spinner for demo 
+    return this.httpClient.get<PostComment[]>(URL).pipe(delay(1000));
 
   }
 }
